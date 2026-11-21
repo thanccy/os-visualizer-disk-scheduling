@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OS Scheduling Visualizer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>OS Scheduling Visualizer</h1>
+    <p>Operating System Algorithm Simulator</p>
+</header>
+
+<nav>
+    <button onclick="showDisk()">Disk Scheduling</button>
+    <button onclick="showCPU()">CPU Scheduling</button>
+</nav>
+
+<!-- DISK SCHEDULING -->
+<section id="diskSection">
+
+    <h2>Disk Scheduling Algorithms</h2>
+
+    <div class="container">
+
+        <label>Disk Size:</label>
+        <input type="number" id="diskSize" value="200">
+
+        <label>Initial Head Position:</label>
+        <input type="number" id="head" value="50">
+
+        <label>Request Queue:</label>
+        <input type="text" id="requests"
+        value="82,170,43,140,24,16,190">
+
+        <label>Direction:</label>
+        <select id="direction">
+            <option value="right">Right</option>
+            <option value="left">Left</option>
+        </select>
+
+        <label>Algorithm:</label>
+        <select id="algorithm">
+            <option>FCFS</option>
+            <option>SSTF</option>
+            <option>SCAN</option>
+            <option>CSCAN</option>
+            <option>LOOK</option>
+        </select>
+
+        <button onclick="runDisk()">Run Algorithm</button>
+        <button onclick="compareDisk()">Compare Algorithms</button>
+
+    </div>
+
+    <div class="container">
+        <h3>Results</h3>
+
+        <p id="sequence">Service Sequence:</p>
+        <h3 id="movement">Total Head Movement: 0</h3>
+
+        <canvas id="diskCanvas" width="700" height="300"></canvas>
+
+        <br>
+
+        <button onclick="previousStep()">Previous</button>
+        <button onclick="nextStep()">Next</button>
+        <button onclick="autoPlay()">Auto Play</button>
+        <button onclick="resetDisk()">Reset</button>
+
+        <p id="step">Step: 0</p>
+    </div>
+
+    <div class="container">
+        <h3>Algorithm Comparison</h3>
+        <canvas id="compareCanvas" width="700" height="300"></canvas>
+    </div>
+
+</section>
+
+
+<!-- CPU SCHEDULING -->
+<section id="cpuSection" style="display:none">
+
+    <h2>CPU Scheduling Algorithms</h2>
+
+    <div class="container">
+
+        <label>Process ID:</label>
+        <input type="text" id="pid" placeholder="P1">
+
+        <label>Arrival Time:</label>
+        <input type="number" id="arrival" value="0">
+
+        <label>Burst Time:</label>
+        <input type="number" id="burst" value="5">
+
+        <label>Time Quantum:</label>
+        <input type="number" id="quantum" value="2">
+
+        <button onclick="addProcess()">Add Process</button>
+
+        <button onclick="loadSample()">Load Sample</button>
+
+        <h3>Process Table</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Process</th>
+                    <th>Arrival</th>
+                    <th>Burst</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody id="processTable"></tbody>
+        </table>
+
+        <br>
+
+        <button onclick="runFCFS()">Run FCFS</button>
+        <button onclick="runRR()">Run Round Robin</button>
+
+        <p id="cpuError"></p>
+
+    </div>
+
+    <div class="container">
+
+        <h3>Gantt Chart</h3>
+
+        <div id="gantt"></div>
+
+        <button onclick="cpuPrevious()">Previous</button>
+        <button onclick="cpuNext()">Next</button>
+        <button onclick="cpuAuto()">Auto Play</button>
+        <button onclick="cpuReset()">Reset</button>
+
+        <h3>Process Results</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Process</th>
+                    <th>Completion</th>
+                    <th>Turnaround</th>
+                    <th>Waiting</th>
+                </tr>
+            </thead>
+
+            <tbody id="resultTable"></tbody>
+        </table>
+
+        <p id="average"></p>
+
+    </div>
+
+</section>
+
+<script src="script.js"></script>
+
+</body>
+</html>
